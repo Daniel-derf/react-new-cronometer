@@ -27,7 +27,12 @@ const useWatch = () => {
     }
   };
 
-  const reset = () => {};
+  const reset = () => {
+    if (interval.current) stop();
+
+    setMinutes(0);
+    setSeconds(0);
+  };
 
   const time = { minutes, seconds };
 
