@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import "./App.css";
 
 const useWatch = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+
   const interval = useRef(0);
 
   const start = () => {
@@ -11,10 +12,12 @@ const useWatch = () => {
 
     interval.current = setInterval(() => {
       setSeconds((prevSeconds) => {
-        if (prevSeconds === 59) {
-          setMinutes((prevMinutes) => prevMinutes + 1);
+        if (prevSeconds >= 59) {
+          setMinutes(minutes + 1);
+
           return 0;
         }
+
         return prevSeconds + 1;
       });
     }, 1000);
